@@ -1,4 +1,6 @@
-const API_BASE = 'http://localhost:8000/api';
+const API_BASE = (typeof process !== 'undefined' && process.env.NEXT_PUBLIC_API_URL)
+  ? `${process.env.NEXT_PUBLIC_API_URL}/api`
+  : 'http://localhost:8000/api';
 
 async function post(endpoint: string, params: Record<string, unknown>): Promise<Record<string, unknown>> {
   const res = await fetch(`${API_BASE}${endpoint}`, {
