@@ -49,7 +49,7 @@
 
 | 設定 | 值 |
 |------|-----|
-| **Root Directory** | `frontend` |
+| **Root Directory** | （在 Vercel Dashboard 設定為 `frontend`） |
 | **Framework** | Next.js |
 | **Environment Variable** | `NEXT_PUBLIC_API_URL` → 你的 Render 後端網址（如 `https://top10ml-backend.onrender.com`） |
 
