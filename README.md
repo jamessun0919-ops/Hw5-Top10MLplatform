@@ -1,6 +1,6 @@
 # 🧠 TOP10ML — 機器學習十大演算法互動學習平台
 
-<a href="https://hw-5-liart.vercel.app/" target="_blank">![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel-00f0ff?style=for-the-badge&logo=vercel&logoColor=white)</a>
+<a href="http://localhost:3000" target="_blank">![Live Demo](https://img.shields.io/badge/Live%20Demo-localhost-00f0ff?style=for-the-badge&logo=nextdotjs&logoColor=white)</a>
 <a href="https://github.com/jamessun0919-ops/Hw5-Top10MLplatform" target="_blank">![GitHub](https://img.shields.io/badge/GitHub-Repo-7c3aed?style=for-the-badge&logo=github&logoColor=white)</a>
 
 ---
@@ -13,7 +13,7 @@
 
 ## 🎯 專案簡介
 
-以 https://hw-5-liart.vercel.app/ 為參考範例，建立一個可互動的機器學習演算法學習網頁，採用 **Next.js 前端** + **FastAPI 後端** 架構。
+建立一個可互動的機器學習演算法學習網頁，採用 **Next.js 前端** + **FastAPI 後端** 架構。
 
 涵蓋 **10 大機器學習演算法**，每個演算法獨立分頁，包含：
 
