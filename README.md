@@ -41,6 +41,35 @@
 
 ---
 
+## 🌐 部署
+
+### Vercel（前端）
+
+[![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/jamessun0919-ops/Hw5-Top10MLplatform)
+
+| 設定 | 值 |
+|------|-----|
+| **Root Directory** | `frontend` |
+| **Framework** | Next.js |
+| **Environment Variable** | `NEXT_PUBLIC_API_URL` → 你的 Render 後端網址（如 `https://top10ml-backend.onrender.com`） |
+
+> `vercel.json` 已預設於專案根目錄，Vercel 會自動辨識。
+
+### Render（後端）
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/jamessun0919-ops/Hw5-Top10MLplatform)
+
+| 設定 | 值 |
+|------|-----|
+| **Runtime** | Python 3.11 |
+| **Build Command** | `pip install -r backend/requirements.txt` |
+| **Start Command** | `cd backend && uvicorn main:app --host 0.0.0.0 --port $PORT` |
+| **Health Check** | `/api/algorithms` |
+
+> `render.yaml` 與 `backend/Procfile` 已預設於專案中。
+
+---
+
 ## 🚀 快速開始
 
 ### 後端
