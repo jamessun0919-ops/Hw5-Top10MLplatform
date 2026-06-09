@@ -72,18 +72,41 @@
 - [x] 驗證 API 端點正常回傳資料
 - [x] 驗證前端頁面正常渲染（Status 200）
 
+### 7. 專案文件與資訊圖
+- [x] 建立 `workflow.md` 工作流程記錄
+- [x] 建立 `infographic.svg` 專案資訊圖（架構、演算法卡片、技術棧、功能）
+- [x] 建立 `README.md`（含資訊圖嵌入、Live Demo 連結、完整專案說明）
+- [x] 初始化 Git 並推送至 `github.com/jamessun0919-ops/Hw5-Top10MLplatform`
+
+### 8. 部署設定（進行中）
+- [x] 建立 `vercel.json` — Vercel 前端部署設定
+- [x] 建立 `render.yaml` — Render Blueprint 後端部署設定（後因未付費改用手動）
+- [x] 更新 `frontend/src/lib/api.ts` — 使用 `NEXT_PUBLIC_API_URL` 環境變數動態切換 API 位址
+- [x] 前端成功部署至 Vercel：`https://hw5-top10-m-lplatform.vercel.app`
+- [ ] 後端部署至 Render（Web Service 手動建立中）
+  - Build Command: `pip install -r requirements.txt`
+  - Start Command: `uvicorn backend.main:app --host 0.0.0.0 --port $PORT`
+  - 問題：Render 免費方案不支援 Blueprint，需手動建立
+  - 狀態：**待 Render 建立 Web Service 完成**
+
 ---
 
 ## 最終執行狀態
 
 | 服務 | 技術 | 網址 | 狀態 |
 |------|------|------|------|
-| 後端 API | FastAPI + scikit-learn | `http://localhost:8000` | ✅ 運行中 |
-| 前端 | Next.js 16 + Recharts + Tailwind CSS | `http://localhost:3000` | ✅ 運行中 |
+| 後端 API（本地） | FastAPI + scikit-learn | `http://localhost:8000` | ✅ 正常 |
+| 前端（本地） | Next.js 16 + Recharts + Tailwind CSS | `http://localhost:3000` | ✅ 正常 |
+| 前端（生產） | Vercel | `https://hw5-top10-m-lplatform.vercel.app` | ✅ 已部署 |
+| 後端 API（生產） | Render | `https://top10ml-backend.onrender.com` | ❌ 待手動建立 |
 
 ---
 
 ## 待辦 / 未來改善
+- [ ] **Render 手動建立 Web Service**（Build: `pip install -r requirements.txt`, Start: `uvicorn backend.main:app --host 0.0.0.0 --port $PORT`）
+- [ ] Render 部署完成後，到 Vercel 設定 `NEXT_PUBLIC_API_URL` 環境變數
+- [ ] 重新部署 Vercel 前端，驗證資料可正常顯示
+- [ ] 更新 README 中 Live Demo 按鈕連結為最終 Vercel 網址
 - [ ] 補上單元測試
 - [ ] 加入更多互動效果（動畫過渡）
 - [ ] 響應式行動版優化
