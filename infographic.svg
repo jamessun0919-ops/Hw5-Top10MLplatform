@@ -1,0 +1,269 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1600" font-family="'Segoe UI', 'Inter', Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0e27"/>
+      <stop offset="100%" style="stop-color:#111638"/>
+    </linearGradient>
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00f0ff"/>
+      <stop offset="100%" style="stop-color:#7c3aed"/>
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:rgba(17,22,56,0.9)"/>
+      <stop offset="100%" style="stop-color:rgba(10,14,39,0.9)"/>
+    </linearGradient>
+    <linearGradient id="cyberGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00f0ff;stop-opacity:0.15"/>
+      <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:0.15"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="1600" fill="url(#bg)"/>
+
+  <!-- Grid pattern -->
+  <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+  </pattern>
+  <rect width="1200" height="1600" fill="url(#grid)"/>
+
+  <!-- Decorative circles -->
+  <circle cx="1100" cy="200" r="150" fill="none" stroke="#00f0ff" stroke-width="0.5" opacity="0.1"/>
+  <circle cx="1100" cy="200" r="100" fill="none" stroke="#7c3aed" stroke-width="0.5" opacity="0.15"/>
+  <circle cx="100" cy="1400" r="120" fill="none" stroke="#7c3aed" stroke-width="0.5" opacity="0.1"/>
+  <circle cx="100" cy="1400" r="80" fill="none" stroke="#00f0ff" stroke-width="0.5" opacity="0.12"/>
+
+  <!-- Header -->
+  <rect x="50" y="30" width="1100" height="120" rx="16" fill="url(#cyberGrad)" stroke="rgba(0,240,255,0.2)" stroke-width="1"/>
+  <rect x="70" y="55" width="60" height="60" rx="12" fill="url(#headerGrad)"/>
+  <text x="100" y="92" text-anchor="middle" fill="#fff" font-size="28" font-weight="bold">ML</text>
+  <text x="150" y="80" fill="#00f0ff" font-size="36" font-weight="bold" filter="url(#glow)">TOP10ML</text>
+  <text x="152" y="105" fill="#94a3b8" font-size="16">機器學習十大演算法互動學習平台</text>
+
+  <!-- Status badge -->
+  <rect x="920" y="55" width="200" height="36" rx="18" fill="rgba(16,185,129,0.15)" stroke="rgba(16,185,129,0.3)" stroke-width="1"/>
+  <circle cx="940" cy="73" r="5" fill="#10b981"/>
+  <animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite" xlink:href="#dot"/>
+  <circle id="dot" cx="940" cy="73" r="5" fill="#10b981"/>
+  <text x="960" y="78" fill="#10b981" font-size="14" font-weight="600">已部署 · 線上</text>
+  <text x="938" y="108" fill="#64748b" font-size="11">Two-server architecture</text>
+
+  <!-- ============ SECTION: Architecture ============ -->
+  <text x="70" y="195" fill="#00f0ff" font-size="20" font-weight="bold">系統架構</text>
+  <line x1="70" y1="205" x2="200" y2="205" stroke="#00f0ff" stroke-width="2" opacity="0.5"/>
+
+  <!-- Frontend box -->
+  <rect x="80" y="220" width="480" height="100" rx="12" fill="url(#cardGrad)" stroke="rgba(0,240,255,0.2)" stroke-width="1" filter="url(#shadow)"/>
+  <rect x="80" y="220" width="480" height="4" rx="2" fill="url(#headerGrad)"/>
+  <text x="110" y="255" fill="#00f0ff" font-size="16" font-weight="bold">前端 — Next.js 16</text>
+  <text x="110" y="278" fill="#94a3b8" font-size="12">• React + TypeScript + Tailwind CSS</text>
+  <text x="110" y="296" fill="#94a3b8" font-size="12">• Recharts 互動圖表 · 科技風格 UI</text>
+  <rect x="418" y="240" width="120" height="60" rx="8" fill="rgba(0,240,255,0.08)" stroke="rgba(0,240,255,0.15)" stroke-width="1"/>
+  <text x="478" y="268" text-anchor="middle" fill="#00f0ff" font-size="11" font-weight="bold">Port 3000</text>
+  <text x="478" y="285" text-anchor="middle" fill="#64748b" font-size="10">localhost:3000</text>
+
+  <!-- Arrow -->
+  <line x1="560" y1="270" x2="610" y2="270" stroke="#7c3aed" stroke-width="2" stroke-dasharray="5,3"/>
+  <polygon points="610,265 620,270 610,275" fill="#7c3aed"/>
+
+  <!-- Backend box -->
+  <rect x="630" y="220" width="490" height="100" rx="12" fill="url(#cardGrad)" stroke="rgba(124,58,237,0.2)" stroke-width="1" filter="url(#shadow)"/>
+  <rect x="630" y="220" width="490" height="4" rx="2" fill="#7c3aed"/>
+  <text x="660" y="255" fill="#7c3aed" font-size="16" font-weight="bold">後端 — FastAPI</text>
+  <text x="660" y="278" fill="#94a3b8" font-size="12">• Python · scikit-learn · NumPy</text>
+  <text x="660" y="296" fill="#94a3b8" font-size="12">• 10 個演算法 API · Pydantic 驗證</text>
+  <rect x="980" y="240" width="120" height="60" rx="8" fill="rgba(124,58,237,0.08)" stroke="rgba(124,58,237,0.15)" stroke-width="1"/>
+  <text x="1040" y="268" text-anchor="middle" fill="#7c3aed" font-size="11" font-weight="bold">Port 8000</text>
+  <text x="1040" y="285" text-anchor="middle" fill="#64748b" font-size="10">localhost:8000</text>
+
+  <!-- ============ SECTION: 10 Algorithms ============ -->
+  <text x="70" y="375" fill="#00f0ff" font-size="20" font-weight="bold">十大演算法</text>
+  <line x1="70" y1="385" x2="170" y2="385" stroke="#00f0ff" stroke-width="2" opacity="0.5"/>
+
+  <!-- Algorithm cards grid -->
+  <!-- Row 1 -->
+  <g transform="translate(80, 400)">
+    <rect width="240" height="90" rx="10" fill="url(#cardGrad)" stroke="rgba(0,240,255,0.12)" stroke-width="1" filter="url(#shadow)"/>
+    <rect x="10" y="10" width="32" height="32" rx="8" fill="url(#headerGrad)"/>
+    <text x="26" y="31" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold">1</text>
+    <text x="52" y="28" fill="#e2e8f0" font-size="14" font-weight="bold">線性回歸</text>
+    <text x="52" y="46" fill="#64748b" font-size="10">監督式學習 · 回歸</text>
+    <text x="12" y="70" fill="#00f0ff" font-size="10">y = wx + b · 最小化 MSE</text>
+  </g>
+  <g transform="translate(340, 400)">
+    <rect width="240" height="90" rx="10" fill="url(#cardGrad)" stroke="rgba(0,240,255,0.12)" stroke-width="1" filter="url(#shadow)"/>
+    <rect x="10" y="10" width="32" height="32" rx="8" fill="url(#headerGrad)"/>
+    <text x="26" y="31" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold">2</text>
+    <text x="52" y="28" fill="#e2e8f0" font-size="14" font-weight="bold">邏輯回歸</text>
+    <text x="52" y="46" fill="#64748b" font-size="10">監督式學習 · 分類</text>
+    <text x="12" y="70" fill="#00f0ff" font-size="10">σ(z)=1/(1+e⁻ᶻ) · 對數似然</text>
+  </g>
+  <g transform="translate(600, 400)">
+    <rect width="240" height="90" rx="10" fill="url(#cardGrad)" stroke="rgba(0,240,255,0.12)" stroke-width="1" filter="url(#shadow)"/>
+    <rect x="10" y="10" width="32" height="32" rx="8" fill="url(#headerGrad)"/>
+    <text x="26" y="31" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold">3</text>
+    <text x="52" y="28" fill="#e2e8f0" font-size="14" font-weight="bold">決策樹</text>
+    <text x="52" y="46" fill="#64748b" font-size="10">監督式學習 · 分類/回歸</text>
+    <text x="12" y="70" fill="#00f0ff" font-size="10">資訊增益 · 吉尼係數</text>
+  </g>
+  <g transform="translate(860, 400)">
+    <rect width="260" height="90" rx="10" fill="url(#cardGrad)" stroke="rgba(0,240,255,0.12)" stroke-width="1" filter="url(#shadow)"/>
+    <rect x="10" y="10" width="32" height="32" rx="8" fill="url(#headerGrad)"/>
+    <text x="26" y="31" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold">4</text>
+    <text x="52" y="28" fill="#e2e8f0" font-size="14" font-weight="bold">隨機森林</text>
+    <text x="52" y="46" fill="#64748b" font-size="10">監督式學習 · 分類/回歸</text>
+    <text x="12" y="70" fill="#00f0ff" font-size="10">Bagging · 隨機特徵選取</text>
+  </g>
+
+  <!-- Row 2 -->
+  <g transform="translate(80, 510)">
+    <rect width="240" height="90" rx="10" fill="url(#cardGrad)" stroke="rgba(0,240,255,0.12)" stroke-width="1" filter="url(#shadow)"/>
+    <rect x="10" y="10" width="32" height="32" rx="8" fill="url(#headerGrad)"/>
+    <text x="26" y="31" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold">5</text>
+    <text x="52" y="28" fill="#e2e8f0" font-size="14" font-weight="bold">支援向量機 SVM</text>
+    <text x="52" y="46" fill="#64748b" font-size="10">監督式學習 · 分類</text>
+    <text x="12" y="70" fill="#00f0ff" font-size="10">最大化邊界 · 核函數</text>
+  </g>
+  <g transform="translate(340, 510)">
+    <rect width="240" height="90" rx="10" fill="url(#cardGrad)" stroke="rgba(0,240,255,0.12)" stroke-width="1" filter="url(#shadow)"/>
+    <rect x="10" y="10" width="32" height="32" rx="8" fill="url(#headerGrad)"/>
+    <text x="26" y="31" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold">6</text>
+    <text x="52" y="28" fill="#e2e8f0" font-size="14" font-weight="bold">K-近鄰演算法</text>
+    <text x="52" y="46" fill="#64748b" font-size="10">監督式學習 · 分類/回歸</text>
+    <text x="12" y="70" fill="#00f0ff" font-size="10">歐氏距離 · 多數投票</text>
+  </g>
+  <g transform="translate(600, 510)">
+    <rect width="240" height="90" rx="10" fill="url(#cardGrad)" stroke="rgba(0,240,255,0.12)" stroke-width="1" filter="url(#shadow)"/>
+    <rect x="10" y="10" width="32" height="32" rx="8" fill="url(#headerGrad)"/>
+    <text x="26" y="31" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold">7</text>
+    <text x="52" y="28" fill="#e2e8f0" font-size="14" font-weight="bold">K-平均聚類</text>
+    <text x="52" y="46" fill="#64748b" font-size="10">非監督式 · 聚類</text>
+    <text x="12" y="70" fill="#00f0ff" font-size="10">最小化 WCSS · 迭代質心</text>
+  </g>
+  <g transform="translate(860, 510)">
+    <rect width="260" height="90" rx="10" fill="url(#cardGrad)" stroke="rgba(0,240,255,0.12)" stroke-width="1" filter="url(#shadow)"/>
+    <rect x="10" y="10" width="32" height="32" rx="8" fill="url(#headerGrad)"/>
+    <text x="26" y="31" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold">8</text>
+    <text x="52" y="28" fill="#e2e8f0" font-size="14" font-weight="bold">主成分分析 PCA</text>
+    <text x="52" y="46" fill="#64748b" font-size="10">非監督式 · 降維</text>
+    <text x="12" y="70" fill="#00f0ff" font-size="10">特徵分解 · 變異數保留</text>
+  </g>
+
+  <!-- Row 3 -->
+  <g transform="translate(80, 620)">
+    <rect width="240" height="90" rx="10" fill="url(#cardGrad)" stroke="rgba(0,240,255,0.12)" stroke-width="1" filter="url(#shadow)"/>
+    <rect x="10" y="10" width="32" height="32" rx="8" fill="url(#headerGrad)"/>
+    <text x="26" y="31" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold">9</text>
+    <text x="52" y="28" fill="#e2e8f0" font-size="14" font-weight="bold">梯度提升</text>
+    <text x="52" y="46" fill="#64748b" font-size="10">監督式學習 · 分類/回歸</text>
+    <text x="12" y="70" fill="#00f0ff" font-size="10">逐步擬合殘差 · 學習率</text>
+  </g>
+  <g transform="translate(340, 620)">
+    <rect width="240" height="90" rx="10" fill="url(#cardGrad)" stroke="rgba(0,240,255,0.12)" stroke-width="1" filter="url(#shadow)"/>
+    <rect x="10" y="10" width="32" height="32" rx="8" fill="url(#headerGrad)"/>
+    <text x="26" y="31" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold">10</text>
+    <text x="52" y="28" fill="#e2e8f0" font-size="14" font-weight="bold">神經網路</text>
+    <text x="52" y="46" fill="#64748b" font-size="10">監督式學習 · 分類/回歸</text>
+    <text x="12" y="70" fill="#00f0ff" font-size="10">反向傳播 · 梯度下降</text>
+  </g>
+
+  <!-- ============ SECTION: Features ============ -->
+  <text x="70" y="770" fill="#00f0ff" font-size="20" font-weight="bold">核心功能</text>
+  <line x1="70" y1="780" x2="170" y2="780" stroke="#00f0ff" stroke-width="2" opacity="0.5"/>
+
+  <g transform="translate(80, 800)">
+    <!-- Feature 1 -->
+    <rect width="350" height="70" rx="10" fill="url(#cardGrad)" stroke="rgba(0,240,255,0.1)" stroke-width="1"/>
+    <circle cx="30" cy="35" r="16" fill="rgba(0,240,255,0.15)"/>
+    <text x="30" y="40" text-anchor="middle" fill="#00f0ff" font-size="14">📊</text>
+    <text x="60" y="30" fill="#e2e8f0" font-size="13" font-weight="bold">互動圖表視覺化</text>
+    <text x="60" y="50" fill="#64748b" font-size="11">散佈圖 · 決策邊界 · Sigmoid 曲線 · PCA 投影</text>
+
+    <!-- Feature 2 -->
+    <rect x="0" y="90" width="350" height="70" rx="10" fill="url(#cardGrad)" stroke="rgba(0,240,255,0.1)" stroke-width="1"/>
+    <circle cx="30" cy="125" r="16" fill="rgba(124,58,237,0.15)"/>
+    <text x="30" y="130" text-anchor="middle" fill="#7c3aed" font-size="14">⚙️</text>
+    <text x="60" y="120" fill="#e2e8f0" font-size="13" font-weight="bold">即時參數調整</text>
+    <text x="60" y="140" fill="#64748b" font-size="11">調整斜率 · K值 · 學習率 · 深度等超參數</text>
+
+    <!-- Feature 3 -->
+    <rect x="0" y="180" width="350" height="70" rx="10" fill="url(#cardGrad)" stroke="rgba(0,240,255,0.1)" stroke-width="1"/>
+    <circle cx="30" cy="215" r="16" fill="rgba(16,185,129,0.15)"/>
+    <text x="30" y="220" text-anchor="middle" fill="#10b981" font-size="14">📖</text>
+    <text x="60" y="210" fill="#e2e8f0" font-size="13" font-weight="bold">演算法學習資源</text>
+    <text x="60" y="230" fill="#64748b" font-size="11">適用情境 · 優缺點 · 數學原理</text>
+  </g>
+
+  <!-- Tech stack section (right side) -->
+  <g transform="translate(480, 800)">
+    <rect width="300" height="250" rx="12" fill="url(#cardGrad)" stroke="rgba(124,58,237,0.15)" stroke-width="1"/>
+    <rect x="0" y="0" width="300" height="4" rx="2" fill="#7c3aed"/>
+    <text x="150" y="32" text-anchor="middle" fill="#7c3aed" font-size="15" font-weight="bold">技術棧</text>
+
+    <!-- Tech items -->
+    <g transform="translate(20, 50)">
+      <rect width="260" height="36" rx="6" fill="rgba(0,240,255,0.06)"/>
+      <text x="15" y="23" fill="#00f0ff" font-size="12" font-weight="bold">Next.js 16</text>
+      <text x="200" y="23" fill="#64748b" font-size="11" text-anchor="end">React · Turbopack</text>
+    </g>
+    <g transform="translate(20, 96)">
+      <rect width="260" height="36" rx="6" fill="rgba(124,58,237,0.06)"/>
+      <text x="15" y="23" fill="#7c3aed" font-size="12" font-weight="bold">FastAPI</text>
+      <text x="200" y="23" fill="#64748b" font-size="11" text-anchor="end">Python · Pydantic</text>
+    </g>
+    <g transform="translate(20, 142)">
+      <rect width="260" height="36" rx="6" fill="rgba(16,185,129,0.06)"/>
+      <text x="15" y="23" fill="#10b981" font-size="12" font-weight="bold">scikit-learn</text>
+      <text x="200" y="23" fill="#64748b" font-size="11" text-anchor="end">NumPy</text>
+    </g>
+    <g transform="translate(20, 188)">
+      <rect width="260" height="36" rx="6" fill="rgba(245,158,11,0.06)"/>
+      <text x="15" y="23" fill="#f59e0b" font-size="12" font-weight="bold">Recharts</text>
+      <text x="200" y="23" fill="#64748b" font-size="11" text-anchor="end">Tailwind CSS</text>
+    </g>
+  </g>
+
+  <!-- ============ SECTION: Live Demo ============ -->
+  <g transform="translate(830, 800)">
+    <rect width="290" height="250" rx="12" fill="url(#cardGrad)" stroke="rgba(0,240,255,0.15)" stroke-width="1"/>
+    <rect x="0" y="0" width="290" height="4" rx="2" fill="#00f0ff"/>
+    <text x="145" y="32" text-anchor="middle" fill="#00f0ff" font-size="15" font-weight="bold">即時體驗</text>
+
+    <g transform="translate(20, 55)">
+      <rect width="250" height="80" rx="10" fill="rgba(0,240,255,0.06)" stroke="rgba(0,240,255,0.15)" stroke-width="1" stroke-dasharray="4,3" filter="url(#shadow)"/>
+      <text x="125" y="30" text-anchor="middle" fill="#00f0ff" font-size="13" font-weight="bold">🚀 Live Demo</text>
+      <text x="125" y="50" text-anchor="middle" fill="#94a3b8" font-size="10">探索 10 大演算法</text>
+      <text x="125" y="67" text-anchor="middle" fill="#64748b" font-size="9">視覺化學習 · 即時互動</text>
+    </g>
+
+    <g transform="translate(20, 150)">
+      <rect width="250" height="80" rx="10" fill="rgba(124,58,237,0.06)" stroke="rgba(124,58,237,0.15)" stroke-width="1" filter="url(#shadow)"/>
+      <text x="125" y="25" text-anchor="middle" fill="#7c3aed" font-size="12" font-weight="bold">🔗 GitHub 原始碼</text>
+      <text x="125" y="45" text-anchor="middle" fill="#94a3b8" font-size="10">jamessun0919-ops</text>
+      <text x="125" y="62" text-anchor="middle" fill="#64748b" font-size="9">Hw5-Top10MLplatform</text>
+    </g>
+  </g>
+
+  <!-- ============ FOOTER ============ -->
+  <line x1="80" y1="1120" x2="1120" y2="1120" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+
+  <text x="600" y="1150" text-anchor="middle" fill="#64748b" font-size="12">
+    TOP10ML — 機器學習十大演算法互動學習平台
+  </text>
+  <text x="600" y="1170" text-anchor="middle" fill="#475569" font-size="11">
+    Built with Next.js 16 · FastAPI · scikit-learn · Recharts
+  </text>
+  <text x="600" y="1195" text-anchor="middle" fill="#475569" font-size="10">
+    © 2026 · MIT License
+  </text>
+</svg>
