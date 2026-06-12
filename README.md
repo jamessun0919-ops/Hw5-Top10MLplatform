@@ -1,6 +1,6 @@
 # 🧠 TOP10ML — 機器學習十大演算法互動學習平台
 
-<a href="https://hw5-top10-m-lplatform.vercel.app" target="_blank">![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel-00f0ff?style=for-the-badge&logo=vercel&logoColor=white)</a>
+<a href="https://hw5-top10-m-lplatform-k2pz.vercel.app/" target="_blank">![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel-00f0ff?style=for-the-badge&logo=vercel&logoColor=white)</a>
 <a href="https://github.com/jamessun0919-ops/Hw5-Top10MLplatform" target="_blank">![GitHub](https://img.shields.io/badge/GitHub-Repo-7c3aed?style=for-the-badge&logo=github&logoColor=white)</a>
 
 ---
