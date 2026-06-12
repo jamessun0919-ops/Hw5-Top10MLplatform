@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from algorithms import (
+from .algorithms import (
     linear_regression, logistic_regression, decision_tree,
     random_forest, svm, knn, kmeans, pca, gradient_boosting, neural_network
 )
