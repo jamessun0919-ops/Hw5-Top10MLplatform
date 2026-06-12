@@ -51,7 +51,7 @@
 |------|-----|
 | **Root Directory** | （在 Vercel Dashboard 設定為 `frontend`） |
 | **Framework** | Next.js |
-| **Environment Variable** | `NEXT_PUBLIC_API_URL` → 你的 Render 後端網址（如 `https://top10ml-backend.onrender.com`） |
+| **Environment Variable** | `NEXT_PUBLIC_API_URL` → 你的 Render 後端網址（如 `https://top10ml-backend.onrender.com`，結尾不要加 `/api`） |
 
 > `vercel.json` 已預設於專案根目錄，Vercel 會自動辨識。
 
