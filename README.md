@@ -61,8 +61,8 @@
 
 | 設定 | 值 |
 |------|-----|
-| **Runtime** | Python 3.11 |
-| **Build Command** | `pip install -r backend/requirements.txt` |
+| **Runtime** | Python 3.11.9（由根目錄 `.python-version` 固定） |
+| **Build Command** | `python -m pip install --upgrade pip setuptools wheel && python -m pip install -r requirements.txt` |
 | **Start Command** | `cd backend && uvicorn main:app --host 0.0.0.0 --port $PORT` |
 | **Health Check** | `/api/algorithms` |
 
