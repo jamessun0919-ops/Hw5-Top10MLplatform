@@ -203,8 +203,7 @@ def generate_data(params: MultipleLinearRegressionParams):
     curves_data = []
     algorithms = ['pearson', 'f_regression', 'mutual_info', 'rfe', 'lasso', 'ridge', 'random_forest', 'extra_trees', 'gradient_boosting', 'sfs']
     
-    max_k = min(N_feat, 10)
-    for k in range(1, max_k + 1):
+    for k in range(1, N_feat + 1):
         point = {"k": k}
         for alg in algorithms:
             selected = ranks[alg][:k]
@@ -219,7 +218,7 @@ def generate_data(params: MultipleLinearRegressionParams):
         
     return {
         "curves": curves_data,
-        "n_features": max_k,
+        "n_features": N_feat,
         "feature_names": feature_names,
         "info": {
             "適用情境": "高維度數據預測、關鍵因子特徵篩選、模型降維與解釋性優化",
