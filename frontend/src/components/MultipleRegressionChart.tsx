@@ -26,7 +26,7 @@ export default function MultipleRegressionChart({ curves, visibleAlgos }: Props)
   if (!curves || curves.length === 0) return null;
 
   return (
-    <div className="space-y-6">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
       {/* R-squared Chart */}
       <div className="glass-card p-4">
         <h3 className="text-sm font-semibold text-cyan uppercase tracking-wider mb-3">特徵數量 vs R-squared (越接近 1 越佳)</h3>
