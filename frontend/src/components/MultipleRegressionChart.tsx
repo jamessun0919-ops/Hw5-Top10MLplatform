@@ -33,7 +33,7 @@ export default function MultipleRegressionChart({ curves, visibleAlgos }: Props)
         <ResponsiveContainer width="100%" height={340}>
           <LineChart data={curves} margin={{ top: 10, right: 20, bottom: 15, left: 10 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
-            <XAxis type="number" dataKey="k" domain={[1, 'dataMax']} stroke="#94a3b8" fontSize={12} label={{ value: '使用特徵數', position: 'bottom', fill: '#94a3b8', fontSize: 12, offset: 0 }} />
+            <XAxis type="number" dataKey="k" domain={[1, 'dataMax']} ticks={curves.map((d) => d.k as number)} allowDecimals={false} stroke="#94a3b8" fontSize={12} label={{ value: '使用特徵數', position: 'bottom', fill: '#94a3b8', fontSize: 12, offset: 0 }} />
             <YAxis type="number" domain={[0, 1.05]} stroke="#94a3b8" fontSize={12} label={{ value: 'R-squared', angle: -90, position: 'insideLeft', fill: '#94a3b8', fontSize: 12 }} />
             <Tooltip
               contentStyle={{ background: 'rgba(17,22,56,0.95)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 8 }}
@@ -63,7 +63,7 @@ export default function MultipleRegressionChart({ curves, visibleAlgos }: Props)
         <ResponsiveContainer width="100%" height={340}>
           <LineChart data={curves} margin={{ top: 10, right: 20, bottom: 15, left: 10 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
-            <XAxis type="number" dataKey="k" domain={[1, 'dataMax']} stroke="#94a3b8" fontSize={12} label={{ value: '使用特徵數', position: 'bottom', fill: '#94a3b8', fontSize: 12, offset: 0 }} />
+            <XAxis type="number" dataKey="k" domain={[1, 'dataMax']} ticks={curves.map((d) => d.k as number)} allowDecimals={false} stroke="#94a3b8" fontSize={12} label={{ value: '使用特徵數', position: 'bottom', fill: '#94a3b8', fontSize: 12, offset: 0 }} />
             <YAxis type="number" stroke="#94a3b8" fontSize={12} label={{ value: 'MSE', angle: -90, position: 'insideLeft', fill: '#94a3b8', fontSize: 12 }} />
             <Tooltip
               contentStyle={{ background: 'rgba(17,22,56,0.95)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 8 }}
