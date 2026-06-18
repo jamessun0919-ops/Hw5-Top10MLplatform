@@ -43,7 +43,6 @@ export const algorithmConfigs: AlgorithmConfig[] = [
         options: [
           { value: 'boston', label: 'Boston Housing' },
           { value: 'california', label: 'California Housing' },
-          { value: 'simulation', label: '模擬數據 (Simulation)' },
           { value: 'startups', label: '50 Startups (Kaggle)' },
         ],
         default: 'boston',
