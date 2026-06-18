@@ -31,6 +31,19 @@ class MultipleLinearRegressionParams(BaseModel):
 def generate_data(params: MultipleLinearRegressionParams):
     global _cached_startups_df, _cached_boston_df, _cached_california_df
     
+    # Try reading from precomputed cache first for static datasets
+    if params.dataset in ["startups", "boston", "california"]:
+        dir_path = os.path.dirname(os.path.abspath(__file__))
+        cache_file = os.path.join(dir_path, f"cached_{params.dataset}.json")
+        if os.path.exists(cache_file):
+            try:
+                import json
+                with open(cache_file, "r", encoding="utf-8") as f:
+                    return json.load(f)
+            except Exception:
+                # Fallback to normal calculations if cache reading fails
+                pass
+    
     # Load dataset
     if params.dataset == "simulation":
         np.random.seed(42)

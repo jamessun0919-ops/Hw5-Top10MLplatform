@@ -13,7 +13,7 @@ async function request<T>(endpoint: string, init?: RequestInit): Promise<T> {
   try {
     const res = await fetch(`${API_BASE}${endpoint}`, {
       ...init,
-      signal: AbortSignal.timeout(15000),
+      signal: AbortSignal.timeout(30000),
     });
 
     if (!res.ok) {
