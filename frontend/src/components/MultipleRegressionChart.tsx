@@ -30,7 +30,7 @@ export default function MultipleRegressionChart({ curves, visibleAlgos }: Props)
       {/* R-squared Chart */}
       <div className="glass-card p-4">
         <h3 className="text-sm font-semibold text-cyan uppercase tracking-wider mb-3">特徵數量 vs R-squared (越接近 1 越佳)</h3>
-        <ResponsiveContainer width="100%" height={340}>
+        <ResponsiveContainer width="100%" height={480}>
           <LineChart data={curves} margin={{ top: 10, right: 20, bottom: 15, left: 10 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
             <XAxis type="number" dataKey="k" domain={[1, 'dataMax']} ticks={curves.map((d) => d.k as number)} allowDecimals={false} stroke="#94a3b8" fontSize={12} label={{ value: '使用特徵數', position: 'bottom', fill: '#94a3b8', fontSize: 12, offset: 0 }} />
@@ -39,7 +39,6 @@ export default function MultipleRegressionChart({ curves, visibleAlgos }: Props)
               contentStyle={{ background: 'rgba(17,22,56,0.95)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 8 }}
               labelFormatter={(value) => `特徵數: ${value}`}
             />
-            <Legend wrapperStyle={{ fontSize: 11, paddingTop: 10 }} />
             {ALGORITHMS.map((alg) => (
               <Line
                 key={alg.id}
@@ -60,7 +59,7 @@ export default function MultipleRegressionChart({ curves, visibleAlgos }: Props)
       {/* MSE Chart */}
       <div className="glass-card p-4">
         <h3 className="text-sm font-semibold text-cyan uppercase tracking-wider mb-3">特徵數量 vs MSE (越低越佳)</h3>
-        <ResponsiveContainer width="100%" height={340}>
+        <ResponsiveContainer width="100%" height={480}>
           <LineChart data={curves} margin={{ top: 10, right: 20, bottom: 15, left: 10 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
             <XAxis type="number" dataKey="k" domain={[1, 'dataMax']} ticks={curves.map((d) => d.k as number)} allowDecimals={false} stroke="#94a3b8" fontSize={12} label={{ value: '使用特徵數', position: 'bottom', fill: '#94a3b8', fontSize: 12, offset: 0 }} />
@@ -69,7 +68,6 @@ export default function MultipleRegressionChart({ curves, visibleAlgos }: Props)
               contentStyle={{ background: 'rgba(17,22,56,0.95)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 8 }}
               labelFormatter={(value) => `特徵數: ${value}`}
             />
-            <Legend wrapperStyle={{ fontSize: 11, paddingTop: 10 }} />
             {ALGORITHMS.map((alg) => (
               <Line
                 key={alg.id}
