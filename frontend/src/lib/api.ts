@@ -32,6 +32,8 @@ export const api = {
   listAlgorithms: () => get<AlgorithmList>('/algorithms'),
   linearRegression: (p: { slope: number; intercept: number; noise: number; n_points: number }) =>
     post('/linear-regression/generate', p),
+  multipleLinearRegression: (p: { dataset: string; n_points: number; noise: number; n_features?: number; n_informative?: number }) =>
+    post('/multiple-linear-regression/generate', p),
   logisticRegression: (p: { c: number; n_points: number }) =>
     post('/logistic-regression/generate', p),
   decisionTree: (p: { max_depth: number; min_samples_split: number; n_points: number }) =>

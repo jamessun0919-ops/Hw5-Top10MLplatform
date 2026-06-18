@@ -5,6 +5,7 @@ import InfoPanel from './InfoPanel';
 import ParameterPanel from './ParameterPanel';
 import RegressionChart from './RegressionChart';
 import LogisticChart from './LogisticChart';
+import MultipleRegressionChart, { ALGORITHMS } from './MultipleRegressionChart';
 import DecisionBoundaryChart from './DecisionBoundaryChart';
 import CurveChart from './CurveChart';
 import PCAChart from './PCAChart';
@@ -23,6 +24,7 @@ export default function AlgorithmPage({ config }: { config: AlgorithmConfig }) {
   const [result, setResult] = useState<Record<string, unknown> | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [visibleAlgos, setVisibleAlgos] = useState<string[]>(ALGORITHMS.map(a => a.id));
 
   const generate = useCallback(async () => {
     setLoading(true);
@@ -38,8 +40,30 @@ export default function AlgorithmPage({ config }: { config: AlgorithmConfig }) {
   }, [config, params]);
 
   useEffect(() => {
-    generate();
-  }, []);
+    let active = true;
+    const fetchInitialData = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const data = await config.fetchData(config.defaultParams);
+        if (active) {
+          setResult(data);
+        }
+      } catch (e) {
+        if (active) {
+          setError(e instanceof Error ? e.message : '生成失敗');
+        }
+      } finally {
+        if (active) {
+          setLoading(false);
+        }
+      }
+    };
+    fetchInitialData();
+    return () => {
+      active = false;
+    };
+  }, [config]);
 
   const handleParamChange = (key: string, value: unknown) => {
     setParams((prev) => ({ ...prev, [key]: value }));
@@ -49,6 +73,10 @@ export default function AlgorithmPage({ config }: { config: AlgorithmConfig }) {
     if (!result) return null;
 
     switch (config.id) {
+      case 'multiple-linear-regression': {
+        const r = result as { curves: Record<string, unknown>[] };
+        return <MultipleRegressionChart curves={r.curves} visibleAlgos={visibleAlgos} />;
+      }
       case 'linear-regression': {
         const r = result as { data: { x: number; y: number }[]; regression_line: { x: number; y: number }[]; equation: string; r_squared: number };
         return (
@@ -147,12 +175,58 @@ export default function AlgorithmPage({ config }: { config: AlgorithmConfig }) {
     <div className="flex flex-col lg:flex-row gap-6">
       <div className="lg:w-72 space-y-4">
         <ParameterPanel
-          params={config.paramDefs}
+          params={
+            config.id === 'multiple-linear-regression' && params.dataset !== 'simulation'
+              ? config.paramDefs.filter(p => p.key === 'dataset')
+              : config.paramDefs
+          }
           values={params}
           onChange={handleParamChange}
           onGenerate={generate}
           loading={loading}
         />
+        {config.id === 'multiple-linear-regression' && (
+          <div className="glass-card p-4 space-y-3">
+            <h3 className="text-sm font-semibold text-cyan uppercase tracking-wider">選擇顯示演算法</h3>
+            <div className="space-y-2 max-h-72 overflow-y-auto scrollbar-none pr-1">
+              {ALGORITHMS.map((alg) => {
+                const isChecked = visibleAlgos.includes(alg.id);
+                return (
+                  <label key={alg.id} className="flex items-center gap-2.5 text-xs text-secondary hover:text-white cursor-pointer select-none">
+                    <input
+                      type="checkbox"
+                      checked={isChecked}
+                      onChange={() => {
+                        if (isChecked) {
+                          setVisibleAlgos(visibleAlgos.filter(id => id !== alg.id));
+                        } else {
+                          setVisibleAlgos([...visibleAlgos, alg.id]);
+                        }
+                      }}
+                      className="rounded border-white/10 bg-[#070a1e] text-cyan focus:ring-0 focus:ring-offset-0 w-4 h-4 cursor-pointer animate-none"
+                    />
+                    <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: alg.color }} />
+                    <span className={isChecked ? "text-white font-medium" : ""}>{alg.name}</span>
+                  </label>
+                );
+              })}
+            </div>
+            <div className="flex gap-2 pt-1.5 border-t border-white/5">
+              <button
+                onClick={() => setVisibleAlgos(ALGORITHMS.map(a => a.id))}
+                className="text-[10px] text-cyan hover:underline font-semibold flex-1 text-center"
+              >
+                全選
+              </button>
+              <button
+                onClick={() => setVisibleAlgos([])}
+                className="text-[10px] text-secondary hover:text-white hover:underline font-semibold flex-1 text-center"
+              >
+                全取消
+              </button>
+            </div>
+          </div>
+        )}
         <InfoPanel info={(result?.info as Record<string, string> | null) ?? null} />
       </div>
       <div className="flex-1 space-y-4">

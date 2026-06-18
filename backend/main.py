@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from algorithms import (
-    linear_regression, logistic_regression, decision_tree,
+    linear_regression, multiple_linear_regression, logistic_regression, decision_tree,
     random_forest, svm, knn, kmeans, pca, gradient_boosting, neural_network
 )
 
@@ -16,6 +16,7 @@ app.add_middleware(
 )
 
 app.include_router(linear_regression.router, prefix="/api/linear-regression", tags=["Linear Regression"])
+app.include_router(multiple_linear_regression.router, prefix="/api/multiple-linear-regression", tags=["Multiple Linear Regression"])
 app.include_router(logistic_regression.router, prefix="/api/logistic-regression", tags=["Logistic Regression"])
 app.include_router(decision_tree.router, prefix="/api/decision-tree", tags=["Decision Tree"])
 app.include_router(random_forest.router, prefix="/api/random-forest", tags=["Random Forest"])
@@ -32,6 +33,7 @@ def list_algorithms():
     return {
         "algorithms": [
             {"id": "linear-regression", "name": "線性回歸", "category": "監督式學習（回歸）"},
+            {"id": "multiple-linear-regression", "name": "多元線性回歸", "category": "監督式學習（回歸）"},
             {"id": "logistic-regression", "name": "邏輯回歸", "category": "監督式學習（分類）"},
             {"id": "decision-tree", "name": "決策樹", "category": "監督式學習（分類/回歸）"},
             {"id": "random-forest", "name": "隨機森林", "category": "監督式學習（分類/回歸）"},

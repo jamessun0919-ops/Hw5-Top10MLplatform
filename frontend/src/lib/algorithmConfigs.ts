@@ -33,6 +33,29 @@ export const algorithmConfigs: AlgorithmConfig[] = [
     fetchData: (p) => api.linearRegression(p as { slope: number; intercept: number; noise: number; n_points: number }),
   },
   {
+    id: 'multiple-linear-regression',
+    name: '多元線性回歸',
+    category: '監督式學習（回歸）',
+    defaultParams: { dataset: 'simulation', n_points: 100, noise: 1.0, n_features: 10, n_informative: 4 },
+    paramDefs: [
+      {
+        key: 'dataset', label: '資料集選擇', type: 'select',
+        options: [
+          { value: 'simulation', label: '模擬數據 (Simulation)' },
+          { value: 'startups', label: '50 Startups (Kaggle)' },
+          { value: 'boston', label: 'Boston Housing' },
+          { value: 'california', label: 'California Housing' },
+        ],
+        default: 'simulation',
+      },
+      { key: 'n_points', label: '資料筆數', type: 'range', min: 20, max: 500, step: 10, default: 100 },
+      { key: 'noise', label: '雜訊強度', type: 'range', min: 0, max: 10, step: 0.5, default: 1.0 },
+      { key: 'n_features', label: '候選特徵數', type: 'range', min: 5, max: 20, step: 1, default: 10 },
+      { key: 'n_informative', label: '有效特徵數', type: 'range', min: 1, max: 10, step: 1, default: 4 },
+    ],
+    fetchData: (p) => api.multipleLinearRegression(p as { dataset: string; n_points: number; noise: number; n_features?: number; n_informative?: number }),
+  },
+  {
     id: 'logistic-regression',
     name: '邏輯回歸',
     category: '監督式學習（分類）',
