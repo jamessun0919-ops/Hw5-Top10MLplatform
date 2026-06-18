@@ -13,6 +13,12 @@ import os
 router = APIRouter()
 
 
+# Global caches to speed up requests in server environment
+_cached_startups_df = None
+_cached_boston_df = None
+_cached_california_df = None
+
+
 class MultipleLinearRegressionParams(BaseModel):
     dataset: str = "startups"
     n_points: int = 100
@@ -23,6 +29,8 @@ class MultipleLinearRegressionParams(BaseModel):
 
 @router.post("/generate")
 def generate_data(params: MultipleLinearRegressionParams):
+    global _cached_startups_df, _cached_boston_df, _cached_california_df
+    
     # Load dataset
     if params.dataset == "simulation":
         np.random.seed(42)
@@ -37,16 +45,23 @@ def generate_data(params: MultipleLinearRegressionParams):
         df = pd.DataFrame(X_data, columns=feature_names)
         df["y"] = y
     elif params.dataset == "startups":
-        startups_path = r"C:\Users\User\Desktop\HW6 Kaggle  50startup CRISP_DM\50_Startups.csv"
-        if os.path.exists(startups_path):
-            df_raw = pd.read_csv(startups_path)
-        else:
-            df_raw = pd.DataFrame({
-                "R&D Spend": np.random.uniform(10000, 160000, 50),
-                "Administration": np.random.uniform(10000, 180000, 50),
-                "Marketing Spend": np.random.uniform(10000, 450000, 50),
-                "Profit": np.random.uniform(30000, 190000, 50)
-            })
+        if _cached_startups_df is None:
+            startups_path = r"C:\Users\User\Desktop\HW5 TOP10ML\pic\50_Startups.csv" # Local path in this repo (pic folder) or Desktop
+            alt_path = r"C:\Users\User\Desktop\HW6 Kaggle  50startup CRISP_DM\50_Startups.csv"
+            
+            # Try loading from local repo paths
+            if os.path.exists(startups_path):
+                _cached_startups_df = pd.read_csv(startups_path)
+            elif os.path.exists(alt_path):
+                _cached_startups_df = pd.read_csv(alt_path)
+            else:
+                _cached_startups_df = pd.DataFrame({
+                    "R&D Spend": np.random.uniform(10000, 160000, 50),
+                    "Administration": np.random.uniform(10000, 180000, 50),
+                    "Marketing Spend": np.random.uniform(10000, 450000, 50),
+                    "Profit": np.random.uniform(30000, 190000, 50)
+                })
+        df_raw = _cached_startups_df
         df = pd.DataFrame({
             "RDSpend": df_raw["R&D Spend"] / 1000,
             "Admin": df_raw["Administration"] / 1000,
@@ -55,44 +70,48 @@ def generate_data(params: MultipleLinearRegressionParams):
         })
         feature_names = ["RDSpend", "Admin", "Marketing"]
     elif params.dataset == "boston":
-        boston_url = "https://raw.githubusercontent.com/selva86/datasets/master/BostonHousing.csv"
-        try:
-            df_raw = pd.read_csv(boston_url)
-        except Exception:
-            df_raw = pd.DataFrame({
-                "crim": np.random.uniform(0, 10, 100),
-                "zn": np.random.uniform(0, 100, 100),
-                "indus": np.random.uniform(0, 30, 100),
-                "chas": np.random.choice([0, 1], 100),
-                "nox": np.random.uniform(0.3, 0.9, 100),
-                "rm": np.random.uniform(4, 9, 100),
-                "age": np.random.uniform(0, 100, 100),
-                "dis": np.random.uniform(1, 12, 100),
-                "rad": np.random.randint(1, 25, 100),
-                "tax": np.random.uniform(180, 700, 100),
-                "ptratio": np.random.uniform(12, 22, 100),
-                "b": np.random.uniform(300, 400, 100),
-                "lstat": np.random.uniform(1, 38, 100),
-                "medv": np.random.uniform(5, 50, 100)
-            })
+        if _cached_boston_df is None:
+            boston_url = "https://raw.githubusercontent.com/selva86/datasets/master/BostonHousing.csv"
+            try:
+                _cached_boston_df = pd.read_csv(boston_url)
+            except Exception:
+                _cached_boston_df = pd.DataFrame({
+                    "crim": np.random.uniform(0, 10, 100),
+                    "zn": np.random.uniform(0, 100, 100),
+                    "indus": np.random.uniform(0, 30, 100),
+                    "chas": np.random.choice([0, 1], 100),
+                    "nox": np.random.uniform(0.3, 0.9, 100),
+                    "rm": np.random.uniform(4, 9, 100),
+                    "age": np.random.uniform(0, 100, 100),
+                    "dis": np.random.uniform(1, 12, 100),
+                    "rad": np.random.randint(1, 25, 100),
+                    "tax": np.random.uniform(180, 700, 100),
+                    "ptratio": np.random.uniform(12, 22, 100),
+                    "b": np.random.uniform(300, 400, 100),
+                    "lstat": np.random.uniform(1, 38, 100),
+                    "medv": np.random.uniform(5, 50, 100)
+                })
+        df_raw = _cached_boston_df
         df = df_raw.rename(columns={"medv": "y"})
         feature_names = [col for col in df.columns if col != "y"]
     elif params.dataset == "california":
-        try:
-            cal = fetch_california_housing(as_frame=True)
-            df_raw = cal.frame
-        except Exception:
-            df_raw = pd.DataFrame({
-                "MedInc": np.random.uniform(1, 15, 100),
-                "HouseAge": np.random.uniform(1, 52, 100),
-                "AveRooms": np.random.uniform(3, 8, 100),
-                "AveBedrms": np.random.uniform(1, 4, 100),
-                "Population": np.random.uniform(100, 5000, 100),
-                "AveOccup": np.random.uniform(1, 6, 100),
-                "Latitude": np.random.uniform(32, 42, 100),
-                "Longitude": np.random.uniform(-124, -114, 100),
-                "MedHouseVal": np.random.uniform(0.5, 5.0, 100)
-            })
+        if _cached_california_df is None:
+            try:
+                cal = fetch_california_housing(as_frame=True)
+                _cached_california_df = cal.frame
+            except Exception:
+                _cached_california_df = pd.DataFrame({
+                    "MedInc": np.random.uniform(1, 15, 100),
+                    "HouseAge": np.random.uniform(1, 52, 100),
+                    "AveRooms": np.random.uniform(3, 8, 100),
+                    "AveBedrms": np.random.uniform(1, 4, 100),
+                    "Population": np.random.uniform(100, 5000, 100),
+                    "AveOccup": np.random.uniform(1, 6, 100),
+                    "Latitude": np.random.uniform(32, 42, 100),
+                    "Longitude": np.random.uniform(-124, -114, 100),
+                    "MedHouseVal": np.random.uniform(0.5, 5.0, 100)
+                })
+        df_raw = _cached_california_df
         df = df_raw.rename(columns={"MedHouseVal": "y"})
         df = df[df["AveRooms"] < 15]  # Clean extreme values
         df["y"] = df["y"] * 10
