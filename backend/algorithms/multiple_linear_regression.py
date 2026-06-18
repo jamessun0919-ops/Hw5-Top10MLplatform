@@ -14,7 +14,7 @@ router = APIRouter()
 
 
 class MultipleLinearRegressionParams(BaseModel):
-    dataset: str = "simulation"
+    dataset: str = "startups"
     n_points: int = 100
     noise: float = 1.0
     n_features: int = 10

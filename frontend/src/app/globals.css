@@ -101,6 +101,11 @@ body {
   transition: border-color 0.2s;
 }
 
+.input-field option {
+  background-color: #ffffff;
+  color: #000000;
+}
+
 .input-field:focus {
   outline: none;
   border-color: var(--accent-cyan);

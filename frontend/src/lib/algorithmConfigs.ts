@@ -36,17 +36,17 @@ export const algorithmConfigs: AlgorithmConfig[] = [
     id: 'multiple-linear-regression',
     name: '多元線性回歸',
     category: '監督式學習（回歸）',
-    defaultParams: { dataset: 'simulation', n_points: 100, noise: 1.0, n_features: 10, n_informative: 4 },
+    defaultParams: { dataset: 'startups', n_points: 100, noise: 1.0, n_features: 10, n_informative: 4 },
     paramDefs: [
       {
         key: 'dataset', label: '資料集選擇', type: 'select',
         options: [
-          { value: 'simulation', label: '模擬數據 (Simulation)' },
           { value: 'startups', label: '50 Startups (Kaggle)' },
           { value: 'boston', label: 'Boston Housing' },
           { value: 'california', label: 'California Housing' },
+          { value: 'simulation', label: '模擬數據 (Simulation)' },
         ],
-        default: 'simulation',
+        default: 'startups',
       },
       { key: 'n_points', label: '資料筆數', type: 'range', min: 20, max: 500, step: 10, default: 100 },
       { key: 'noise', label: '雜訊強度', type: 'range', min: 0, max: 10, step: 0.5, default: 1.0 },
