@@ -30,8 +30,8 @@ export default function RegressionChart({ data, line, equation, rSquared, xLabel
       <ResponsiveContainer width="100%" height={340}>
         <ComposedChart margin={{ top: 10, right: 20, bottom: 10, left: 10 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
-          <XAxis dataKey="x" label={xLabel ? { value: xLabel, position: 'bottom', fill: '#94a3b8', fontSize: 12 } : undefined} stroke="#94a3b8" fontSize={12} />
-          <YAxis label={yLabel ? { value: yLabel, angle: -90, position: 'insideLeft', fill: '#94a3b8', fontSize: 12 } : undefined} stroke="#94a3b8" fontSize={12} />
+          <XAxis type="number" dataKey="x" label={xLabel ? { value: xLabel, position: 'bottom', fill: '#94a3b8', fontSize: 12 } : undefined} stroke="#94a3b8" fontSize={12} />
+          <YAxis type="number" dataKey="y" label={yLabel ? { value: yLabel, angle: -90, position: 'insideLeft', fill: '#94a3b8', fontSize: 12 } : undefined} stroke="#94a3b8" fontSize={12} />
           <Tooltip
             contentStyle={{ background: 'rgba(17,22,56,0.95)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 8 }}
             labelStyle={{ color: '#f1f5f9' }}
