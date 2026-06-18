@@ -1,6 +1,6 @@
 # 🧠 TOP10ML — 機器學習十大演算法互動學習平台
 
-<a href="https://hw5-top10-m-lplatform.vercel.app" target="_blank">![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel-00f0ff?style=for-the-badge&logo=vercel&logoColor=white)</a>
+<a href="https://hw5-top10-m-lplatform-k2pz.vercel.app/" target="_blank">![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel-00f0ff?style=for-the-badge&logo=vercel&logoColor=white)</a>
 <a href="https://github.com/jamessun0919-ops/Hw5-Top10MLplatform" target="_blank">![GitHub](https://img.shields.io/badge/GitHub-Repo-7c3aed?style=for-the-badge&logo=github&logoColor=white)</a>
 
 ---
@@ -51,7 +51,7 @@
 |------|-----|
 | **Root Directory** | （在 Vercel Dashboard 設定為 `frontend`） |
 | **Framework** | Next.js |
-| **Environment Variable** | `NEXT_PUBLIC_API_URL` → 你的 Render 後端網址（如 `https://top10ml-backend.onrender.com`） |
+| **Environment Variable** | `NEXT_PUBLIC_API_URL` → 你的 Render 後端網址（如 `https://top10ml-backend.onrender.com`，結尾不要加 `/api`） |
 
 > `vercel.json` 已預設於專案根目錄，Vercel 會自動辨識。
 
@@ -61,8 +61,8 @@
 
 | 設定 | 值 |
 |------|-----|
-| **Runtime** | Python 3.11 |
-| **Build Command** | `pip install -r backend/requirements.txt` |
+| **Runtime** | Python 3.11.9（由根目錄 `.python-version` 固定） |
+| **Build Command** | `python -m pip install --upgrade pip setuptools wheel && python -m pip install -r requirements.txt` |
 | **Start Command** | `cd backend && uvicorn main:app --host 0.0.0.0 --port $PORT` |
 | **Health Check** | `/api/algorithms` |
 

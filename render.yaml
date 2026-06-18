@@ -2,7 +2,7 @@ services:
   - type: web
     name: top10ml-backend-api
     runtime: python
-    buildCommand: pip install -r requirements.txt
+    buildCommand: python -m pip install --upgrade pip setuptools wheel && python -m pip install -r requirements.txt
     startCommand: uvicorn backend.main:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /api/algorithms
     numInstances: 1
