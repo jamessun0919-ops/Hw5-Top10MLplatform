@@ -7,6 +7,7 @@ import RegressionChart from './RegressionChart';
 import LogisticChart from './LogisticChart';
 import MultipleRegressionChart, { ALGORITHMS } from './MultipleRegressionChart';
 import DecisionBoundaryChart from './DecisionBoundaryChart';
+import SampleDistributionChart from './SampleDistributionChart';
 import CurveChart from './CurveChart';
 import PCAChart from './PCAChart';
 import BarChartComponent from './BarChartComponent';
@@ -94,9 +95,28 @@ export default function AlgorithmPage({ config }: { config: AlgorithmConfig }) {
         const r = result as { data: { x: number; y: number }[]; sigmoid: { x: number; prob: number }[]; decision_boundary: number; accuracy: number };
         return <LogisticChart data={r.data} sigmoid={r.sigmoid} decisionBoundary={r.decision_boundary} accuracy={r.accuracy} />;
       }
+      case 'svm': {
+        const r = result as { data: { x1: number; x2: number; label: number }[]; decision_boundary: { x1: number[][]; x2: number[][]; z: number[][] }; accuracy: number; support_vectors?: { x1: number; x2: number }[] };
+        return (
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <SampleDistributionChart
+              data={r.data}
+              xLabel="特徵 1"
+              yLabel="特徵 2"
+            />
+            <DecisionBoundaryChart
+              data={r.data}
+              boundary={r.decision_boundary}
+              supportVectors={r.support_vectors}
+              accuracy={r.accuracy}
+              xLabel="特徵 1"
+              yLabel="特徵 2"
+            />
+          </div>
+        );
+      }
       case 'decision-tree':
       case 'random-forest':
-      case 'svm':
       case 'knn':
       case 'gradient-boosting':
       case 'neural-network': {
