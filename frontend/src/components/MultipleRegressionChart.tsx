@@ -163,5 +163,6 @@ export default function MultipleRegressionChart({ curves, visibleAlgos }: Props)
         </ResponsiveContainer>
       </div>
     </div>
+    </div>
   );
 }
