@@ -63,7 +63,7 @@ export const api = {
     post('/decision-tree/generate', p),
   randomForest: (p: { n_estimators: number; max_depth: number; n_points: number }) =>
     post('/random-forest/generate', p),
-  svm: (p: { c: number; kernel: string; gamma: string; n_points: number }) =>
+  svm: (p: { c: number; kernel: string; gamma: string; n_points: number; dataset: string }) =>
     post('/svm/generate', p),
   knn: (p: { k: number; n_points: number }) =>
     post('/knn/generate', p),

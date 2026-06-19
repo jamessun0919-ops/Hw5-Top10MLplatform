@@ -93,21 +93,31 @@ export const algorithmConfigs: AlgorithmConfig[] = [
     id: 'svm',
     name: '支援向量機 SVM',
     category: '監督式學習（分類）',
-    defaultParams: { c: 1, kernel: 'rbf', gamma: 'scale', n_points: 100 },
+    defaultParams: { c: 1, kernel: 'rbf', gamma: 'scale', n_points: 100, dataset: 'concentric' },
     paramDefs: [
+      {
+        key: 'dataset', label: '資料集選擇', type: 'select',
+        options: [
+          { value: 'concentric', label: '同心圓（預設）' },
+          { value: 'moons', label: '半月形' },
+          { value: 'iris', label: 'Iris Classification' },
+        ],
+        default: 'concentric',
+      },
       { key: 'c', label: '正則化 C', type: 'range', min: 0.1, max: 10, step: 0.1, default: 1 },
       {
         key: 'kernel', label: '核函數', type: 'select',
         options: [
-          { value: 'linear', label: '線性 (Linear)' },
-          { value: 'rbf', label: 'RBF' },
-          { value: 'poly', label: '多項式 (Poly)' },
+          { value: 'rbf', label: 'RBF (Gaussian)（預設）' },
+          { value: 'poly', label: 'Polynomial' },
+          { value: 'linear', label: 'Linear' },
+          { value: 'sigmoid', label: 'Sigmoid' },
         ],
         default: 'rbf',
       },
       { key: 'n_points', label: '資料筆數', type: 'range', min: 20, max: 200, step: 10, default: 100 },
     ],
-    fetchData: (p) => api.svm(p as { c: number; kernel: string; gamma: string; n_points: number }),
+    fetchData: (p) => api.svm(p as { c: number; kernel: string; gamma: string; n_points: number; dataset: string }),
   },
   {
     id: 'knn',

@@ -2,7 +2,7 @@ from fastapi import APIRouter
 from pydantic import BaseModel
 import numpy as np
 from sklearn.svm import SVC
-from sklearn.datasets import make_classification
+from sklearn.datasets import make_circles, make_moons, load_iris
 
 router = APIRouter()
 
@@ -12,16 +12,21 @@ class SVMParams(BaseModel):
     kernel: str = "rbf"
     gamma: str = "scale"
     n_points: int = 100
+    dataset: str = "concentric"
 
 
 @router.post("/generate")
 def generate_data(params: SVMParams):
     np.random.seed(42)
-    X, y = make_classification(
-        n_samples=params.n_points, n_features=2, n_redundant=0,
-        n_informative=2, n_clusters_per_class=1, flip_y=0.05,
-        random_state=42
-    )
+
+    if params.dataset == "iris":
+        iris = load_iris()
+        X = iris.data[:, 2:4]
+        y = iris.target
+    elif params.dataset == "moons":
+        X, y = make_moons(n_samples=params.n_points, noise=0.15, random_state=42)
+    else:
+        X, y = make_circles(n_samples=params.n_points, factor=0.5, noise=0.1, random_state=42)
 
     model = SVC(C=params.c, kernel=params.kernel, gamma=params.gamma, probability=True, random_state=42)
     model.fit(X, y)
